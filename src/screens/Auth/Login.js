@@ -83,7 +83,7 @@ export default function SignIn() {
                             color="primary"
                             className={classes.submit}
                         >
-                            {t("signIn")}
+                            {t("login")}
                         </Button>
                         <Grid container>
                         <Grid item xs>
@@ -93,7 +93,7 @@ export default function SignIn() {
                         </Grid>
                         <Grid item>
                             <Link href="/register" variant="body2">
-                            {t("signUp")}
+                            {t("signUpDesc")}
                             </Link>
                         </Grid>
                         </Grid>

@@ -91,7 +91,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function Dashboard() {
+export default function Classroom() {
 
     const classes = useStyles();
 
@@ -129,6 +129,6 @@ export default function Dashboard() {
                 </Box>
                 </Container>
             </main>
-            </div>
+        </div>
     )
 }

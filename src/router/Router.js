@@ -5,7 +5,7 @@ import ForgotPassword from 'screens/Auth/ForgotPassword';
 import Login from 'screens/Auth/Login';
 import Register from 'screens/Auth/Register';
 import Dashboard from 'screens/Dashboard/Dashboard';
-
+import Classroom from 'screens/Classroom/Classroom';
 
 class Router extends Component {
     render() {
@@ -16,6 +16,8 @@ class Router extends Component {
                     <Route path="/register" component={Register} />
                     <Route path="/login" component={Login} />
                     <Route path="/forgot-password" component={ForgotPassword} />
+
+                    <Route path="/classroom" component={Classroom} />
 
                     {/* Redirect all 404's to home */}
                     <Redirect to='/' />

@@ -14,57 +14,57 @@ export const mainListItems = (
     <div>
         <ListItem button>
             <ListItemIcon>
-            <DashboardIcon />
+              <DashboardIcon />
             </ListItemIcon>
             <ListItemText primary="Dashboard" />
         </ListItem>
         <ListItem button>
             <ListItemIcon>
-            <ShoppingCartIcon />
+              <ShoppingCartIcon />
             </ListItemIcon>
-            <ListItemText primary="Orders" />
+            <ListItemText primary="Class" />
         </ListItem>
         <ListItem button>
             <ListItemIcon>
-            <PeopleIcon />
+              <PeopleIcon />
             </ListItemIcon>
-            <ListItemText primary="Customers" />
+            <ListItemText primary="Quiz" />
         </ListItem>
         <ListItem button>
             <ListItemIcon>
-            <BarChartIcon />
+              <BarChartIcon />
             </ListItemIcon>
-            <ListItemText primary="Reports" />
+            <ListItemText primary="Student" />
         </ListItem>
         <ListItem button>
             <ListItemIcon>
-            <LayersIcon />
+              <LayersIcon />
             </ListItemIcon>
-            <ListItemText primary="Integrations" />
+            <ListItemText primary="Tutor" />
         </ListItem>
     </div>
   );
   
   export const secondaryListItems = (
     <div>
-      <ListSubheader inset>Saved reports</ListSubheader>
+      <ListSubheader>Settings</ListSubheader>
       <ListItem button>
         <ListItemIcon>
           <AssignmentIcon />
         </ListItemIcon>
-        <ListItemText primary="Current month" />
+        <ListItemText primary="Settings" />
       </ListItem>
       <ListItem button>
         <ListItemIcon>
           <AssignmentIcon />
         </ListItemIcon>
-        <ListItemText primary="Last quarter" />
+        <ListItemText primary="My Profile" />
       </ListItem>
       <ListItem button>
         <ListItemIcon>
           <AssignmentIcon />
         </ListItemIcon>
-        <ListItemText primary="Year-end sale" />
+        <ListItemText primary="Logout" />
       </ListItem>
     </div>
   );

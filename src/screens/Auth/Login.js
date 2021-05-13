@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useTranslation } from "react-i18next";
+import PropTypes from 'prop-types';
+
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -14,6 +16,18 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Copyright from '../../components/Copyright';
+import { useHistory } from 'react-router-dom';
+
+async function loginUser(credentials) {
+    return fetch('http://localhost:3001/v1/auth/login', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(credentials)
+    })
+        .then(data => data.json())
+}
 
 const useStyles = makeStyles((theme) => ({
     paper: {
@@ -35,9 +49,26 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function SignIn() {
+export default function Login({ setToken }) {
     const classes = useStyles();
     const { t } = useTranslation();
+    const history = useHistory();
+    
+    const [email, setEmail] = useState();
+    const [password, setPassword] = useState();
+    
+    const handleSubmit = async e => {
+        e.preventDefault();
+        const token = await loginUser({
+            email,
+            password
+        });
+
+        if(token.tokens){
+            setToken(token.tokens);
+            history.push('/');
+        }
+    }
 
     return (
         <Container component="main" maxWidth="xs">
@@ -49,7 +80,7 @@ export default function SignIn() {
                     <Typography component="h1" variant="h5">
                         {t("login")}
                     </Typography>
-                    <form className={classes.form} noValidate>
+                    <form className={classes.form} noValidate onSubmit={handleSubmit}>
                         <TextField
                             variant="outlined"
                             margin="normal"
@@ -60,6 +91,7 @@ export default function SignIn() {
                             name="email"
                             autoComplete="email"
                             autoFocus
+                            onChange={e => setEmail(e.target.value)}
                         />
                         <TextField
                             variant="outlined"
@@ -71,6 +103,7 @@ export default function SignIn() {
                             type="password"
                             id="password"
                             autoComplete="current-password"
+                            onChange={e => setPassword(e.target.value)}
                         />
                         <FormControlLabel
                             control={<Checkbox value="remember" color="primary" />}
@@ -104,4 +137,8 @@ export default function SignIn() {
             </Box>
         </Container>
     )
+}
+
+Login.propTypes = {
+    setToken: PropTypes.func.isRequired
 }

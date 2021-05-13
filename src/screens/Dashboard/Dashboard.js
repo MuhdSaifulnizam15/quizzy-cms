@@ -8,7 +8,7 @@ import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 
 import Copyright from 'components/Copyright';
-import Sidebar from 'components/Sidebar';
+import Sidebar from 'components/sidebar/Sidebar';
 
 const drawerWidth = 240;
 

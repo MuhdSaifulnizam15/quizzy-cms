@@ -6,6 +6,7 @@ export const TRANSLATIONS_EN = {
     forgotPassword: 'Forgot password',
     lastName: 'Last Name',
     login: 'Login',
+    notFound: 'Not Found', // to be translated
     password: 'Password',
     register: 'Register',
     rememberMe: 'Remember Me',

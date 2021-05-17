@@ -6,6 +6,7 @@ export const TRANSLATIONS_BM = {
     forgotPassword: 'Lupa Kata Laluan',
     lastName: 'Last Name', // to be translated
     login: 'Login',
+    notFound: 'Not Found', // to be translated
     password: 'Kata Laluan',
     register: 'Daftar',
     rememberMe: 'Ingat Saya',

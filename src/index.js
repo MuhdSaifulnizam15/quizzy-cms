@@ -1,11 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
 import store from './redux/store';
 import "./translations/i18n";
+
+// core styles
+import "./scss/volt.scss";
+
+// vendor styles
+import "@fortawesome/fontawesome-free/css/all.css";
 
 ReactDOM.render(
   <Provider store={store}>

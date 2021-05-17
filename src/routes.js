@@ -3,7 +3,10 @@ export const Routes = {
     Login: { path: "/login" },
     Register: { path: "/register" },
     ForgotPassword: { path: "/forgot-password" },
+    NotFound: { path: "/404" },
+    ServerError: { path: "/500" },
+    ResetPassword: { path: "/reset-password" },
+    Lock: { path: "/lock" },
     Dashboard: { path: "/home" },
     Classroom: { path: "/classroom" },
-    NotFound: { path: "/404"}
 };

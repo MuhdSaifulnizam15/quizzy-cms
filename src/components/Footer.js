@@ -1,10 +1,12 @@
 
 import React from "react";
+import { useTranslation } from "react-i18next";
 import moment from "moment-timezone";
 import { Row, Col, Card } from '@themesberg/react-bootstrap';
 
-export default (props) => {
+export default function Footer(props) {
   const currentYear = moment().get("year");
+  const { t } = useTranslation();
 
   return (
     <div>

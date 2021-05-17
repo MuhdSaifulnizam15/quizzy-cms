@@ -1,7 +1,7 @@
 
 import moment from "moment-timezone";
 
-export default [
+const transactions = [
     {
         "invoiceNumber": 300500,
         "status": "Paid",
@@ -82,4 +82,6 @@ export default [
         "issueDate": moment().subtract(6, "days").format("DD MMM YYYY"),
         "dueDate": moment().subtract(6, "days").add(1, "month").format("DD MMM YYYY")
     }
-]
+];
+
+export default transactions;

@@ -2,8 +2,7 @@
 import { faCalendarAlt, faFileAlt, faImages, faMapMarkedAlt, faMobileAlt, faPenFancy } from "@fortawesome/free-solid-svg-icons";
 import { faAccessibleIcon, faBootstrap, faGulp, faHtml5, faReact, faSass } from "@fortawesome/free-brands-svg-icons";
 
-
-export default [
+const features = [
     {
         "id": 0,
         "title": "React.js",
@@ -77,3 +76,5 @@ export default [
         "description": "Crafted by professional UI/UX designers"
     }
 ];
+
+export default features;

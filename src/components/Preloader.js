@@ -4,7 +4,7 @@ import { Image } from '@themesberg/react-bootstrap';
 
 import ReactLogo from "assets/images/technologies/react-logo-transparent.svg";
 
-export default (props) => {
+export default function Preloader(props) {
 
   const { show } = props;
 

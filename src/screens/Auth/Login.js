@@ -38,7 +38,7 @@ export default function Login({ setToken }) {
 
         if(token.tokens){
             setToken(token.tokens);
-            history.push('/');
+            history.push(Routes.Dashboard.path);
         }
     }
 

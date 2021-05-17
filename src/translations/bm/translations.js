@@ -14,5 +14,5 @@ export const TRANSLATIONS_BM = {
     signInDesc: 'Already have an account? Sign in', // to be translated
     signUp: 'Log Masuk',
     signUpDesc: "Don't have an account? Sign Up Here", // to be translated
-    copyright: 'Hak Cipta Terpelihara © ',
+    copyright: 'Hak Cipta Terpelihara',
 }

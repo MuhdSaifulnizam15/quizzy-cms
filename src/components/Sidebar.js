@@ -4,7 +4,7 @@ import SimpleBar from 'simplebar-react';
 import { useLocation } from "react-router-dom";
 import { CSSTransition } from 'react-transition-group';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBook, faBoxOpen, faChartPie, faCog, faFileAlt, faHandHoldingUsd, faSignOutAlt, faTable, faTimes } from "@fortawesome/free-solid-svg-icons";
+import { faBook, faChartPie, faCog, faFileAlt, faHandHoldingUsd, faSignOutAlt, faTimes, faUsers, faUserGraduate, faChalkboardTeacher, faChalkboard, faUserNinja, faFilePdf, faFileArchive, faUser } from "@fortawesome/free-solid-svg-icons";
 import { Nav, Badge, Image, Button, Dropdown, Accordion, Navbar } from '@themesberg/react-bootstrap';
 import { Link } from 'react-router-dom';
 
@@ -44,8 +44,8 @@ export default function Sidebar(props = {}) {
   };
 
   const NavItem = (props) => {
-    const { title, link, external, target, icon, image, badgeText, badgeBg = "secondary", badgeColor = "primary" } = props;
-    const classNames = badgeText ? "d-flex justify-content-start align-items-center justify-content-between" : "";
+    const { title, link, external, target, icon, image, badgeText, badgeBg = "secondary", badgeColor = "primary", iconClassName } = props;
+    const classNames = badgeText ? "d-flex justify-content-start align-items-center justify-content-between"  : "";
     const navItemClassName = link === pathname ? "active" : "";
     const linkProps = external ? { href: link } : { as: Link, to: link };
 
@@ -53,7 +53,7 @@ export default function Sidebar(props = {}) {
       <Nav.Item className={navItemClassName} onClick={() => setShow(false)}>
         <Nav.Link {...linkProps} target={target} className={classNames}>
           <span>
-            {icon ? <span className="sidebar-icon"><FontAwesomeIcon icon={icon} /> </span> : null}
+            {icon ? <span className="sidebar-icon"><FontAwesomeIcon icon={icon} className={iconClassName}/> </span> : null}
             {image ? <Image src={image} width={20} height={20} className="sidebar-icon svg-icon" /> : null}
 
             <span className="sidebar-text">{title}</span>
@@ -108,6 +108,29 @@ export default function Sidebar(props = {}) {
                 <NavItem title="404 Not Found" link={Routes.NotFound.path} />
                 <NavItem title="500 Server Error" link={Routes.ServerError.path} />
               </CollapsableNavItem>
+
+              <NavItem title="Assignment" link={Routes.Assignment.path} icon={faFilePdf} />
+
+              <NavItem title="Classroom" link={Routes.Classroom.path} icon={faChalkboard} />
+
+              <NavItem title="Motivational Quote" link={Routes.MotivationalQuote.path} icon={faHandHoldingUsd} />
+
+              <NavItem title="Quiz" link={Routes.Quiz.path} icon={faFileArchive} />
+
+              <NavItem title="Subject" link={Routes.Subject.path} icon={faBook} />
+              
+              <CollapsableNavItem title="Users" icon={faUsers}>
+                <NavItem title="All User" link={Routes.User.path} icon={faUser} />
+                <NavItem title="Admin" link={Routes.Admin.path} icon={faUserNinja} />
+                <NavItem title="Student" link={Routes.Student.path} icon={faUserGraduate} />
+                <NavItem title="Tutor" link={Routes.Tutor.path} icon={faChalkboardTeacher} />
+              </CollapsableNavItem>
+
+              <Dropdown.Divider className="my-3 border-indigo" />
+
+              <NavItem title="Settings" link={Routes.Settings.path} icon={faCog} />
+
+              <NavItem title="Logout" icon={faSignOutAlt} iconClassName="text-danger me-2"/>
 
             </Nav>
           </div>

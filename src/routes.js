@@ -9,4 +9,13 @@ export const Routes = {
     Lock: { path: "/lock" },
     Dashboard: { path: "/home" },
     Classroom: { path: "/classroom" },
+    Subject: { path: "/subjects" },
+    Assignment: { path: "/assignments" },
+    Quiz: { path: "/quizzes" },
+    MotivationalQuote: { path: "/motivational-quote" },
+    User: { path: "/users" },
+    Settings: { path: "/settings" },
+    Student: { path: "/students" },
+    Tutor: { path: "/tutors" },
+    Admin: { path: "/admin" },
 };

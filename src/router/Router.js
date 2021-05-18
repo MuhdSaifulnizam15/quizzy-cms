@@ -22,6 +22,15 @@ import Classroom from 'screens/Classroom/Classroom';
 
 import useToken from 'helpers/useToken';
 import { Routes } from 'routes';
+import Assignment from 'screens/Assignment/Assignment';
+import Quiz from 'screens/Quiz/Quiz';
+import MotivationalQuote from 'screens/Quote/MotivationalQuote';
+import Settings from 'screens/Settings/Settings';
+import User from 'screens/User/User';
+import Tutor from 'screens/User/Tutor';
+import Student from 'screens/User/Student';
+import Admin from 'screens/User/Admin';
+import Subject from 'screens/Subject/Subject';
 
 const RouteWithLoader = ({ component: Component, ...rest }) => {
     const [loaded, setLoaded] = useState(false);
@@ -91,6 +100,16 @@ function Router() {
 
             <RouteWithSidebar exact path={Routes.Dashboard.path} component={Dashboard} />
             <RouteWithSidebar exact path={Routes.Classroom.path} component={Classroom} />
+            <RouteWithSidebar exact path={Routes.Assignment.path} component={Assignment} />
+            <RouteWithSidebar exact path={Routes.Quiz.path} component={Quiz} />
+            <RouteWithSidebar exact path={Routes.MotivationalQuote.path} component={MotivationalQuote} />
+            <RouteWithSidebar exact path={Routes.Settings.path} component={Settings} />
+            <RouteWithSidebar exact path={Routes.Subject.path} component={Subject} />
+            <RouteWithSidebar exact path={Routes.User.path} component={User} />
+            <RouteWithSidebar exact path={Routes.Tutor.path} component={Tutor} />
+            <RouteWithSidebar exact path={Routes.Student.path} component={Student} />
+            <RouteWithSidebar exact path={Routes.Admin.path} component={Admin} />
+
 
             <Redirect to={Routes.NotFound.path} />
         </Switch>

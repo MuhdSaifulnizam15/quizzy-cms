@@ -99,7 +99,7 @@ export default function Sidebar(props = {}) {
 
               <NavItem title="Overview" link={Routes.Dashboard.path} icon={faChartPie} />
 
-              <CollapsableNavItem eventKey="examples/" title="Page Examples" icon={faFileAlt}>
+              {/* <CollapsableNavItem eventKey="examples/" title="Page Examples" icon={faFileAlt}>
                 <NavItem title="Sign In" link={Routes.Login.path} />
                 <NavItem title="Sign Up" link={Routes.Register.path} />
                 <NavItem title="Forgot password" link={Routes.ForgotPassword.path} />
@@ -107,7 +107,7 @@ export default function Sidebar(props = {}) {
                 <NavItem title="Lock" link={Routes.Lock.path} />
                 <NavItem title="404 Not Found" link={Routes.NotFound.path} />
                 <NavItem title="500 Server Error" link={Routes.ServerError.path} />
-              </CollapsableNavItem>
+              </CollapsableNavItem> */}
 
               <NavItem title="Assignment" link={Routes.Assignment.path} icon={faFilePdf} />
 

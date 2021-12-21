@@ -7,14 +7,16 @@ import DashboardLayout from '../layouts/dashboard';
 import LogoOnlyLayout from '../layouts/LogoOnlyLayout';
 
 // pages
-import Login from '../pages/Login';
-import Register from '../pages/Register';
+// authentication
+import Login from '../pages/Auth/Login';
+import Register from '../pages/Auth/Register';
+import ForgotPassword from '../pages/Auth/ForgotPassword';
+import NotFound from '../pages/Auth/Page404';
+
 import DashboardApp from '../pages/DashboardApp';
 import Products from '../pages/Products';
 import Blog from '../pages/Blog';
 import User from '../pages/User';
-import NotFound from '../pages/Page404';
-
 
 export default function Router() {
     return useRoutes([
@@ -36,6 +38,7 @@ export default function Router() {
           { path: 'login', element: <Login /> },
           { path: 'register', element: <Register /> },
           { path: '404', element: <NotFound /> },
+          { path: 'forgot-password', element: <ForgotPassword /> },
           { path: '/', element: <Navigate to="/dashboard" /> },
           { path: '*', element: <Navigate to="/404" /> }
         ]

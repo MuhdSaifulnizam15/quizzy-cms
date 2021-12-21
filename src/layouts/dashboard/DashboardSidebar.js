@@ -96,7 +96,7 @@ export default function DashboardSidebar({ isOpenSidebar, onCloseSidebar }) {
         >
           <Box
             component="img"
-            src="/static/illustrations/illustration_avatar.png"
+            src="/static/illustrations/illustration_avatar.svg"
             sx={{ width: 100, position: 'absolute', top: -50 }}
           />
 

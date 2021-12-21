@@ -12,6 +12,7 @@ import Login from '../pages/Auth/Login';
 import Register from '../pages/Auth/Register';
 import ForgotPassword from '../pages/Auth/ForgotPassword';
 import NotFound from '../pages/Auth/Page404';
+import ComingSoon from '../pages/Auth/ComingSoon';
 
 import DashboardApp from '../pages/DashboardApp';
 import Products from '../pages/Products';
@@ -39,6 +40,7 @@ export default function Router() {
           { path: 'register', element: <Register /> },
           { path: '404', element: <NotFound /> },
           { path: 'forgot-password', element: <ForgotPassword /> },
+          { path: 'coming-soon', element: <ComingSoon /> },
           { path: '/', element: <Navigate to="/dashboard" /> },
           { path: '*', element: <Navigate to="/404" /> }
         ]

@@ -50,25 +50,26 @@ export default function ResetPassword() {
               </Button>
             </>
           ) : (
-            <Box 
-                sx={{ textAlign: 'center', height: 260, mx: 'auto', my: { xs: 5, sm: 10 }  }} 
-                component="img"
-                src="/static/illustrations/illustration_mail_sent.svg"
-            >
+            <Box sx={{ textAlign: 'center' }}>
+                <Box
+                    component="img"
+                    src="/static/illustrations/illustration_mail_sent.svg"
+                    sx={{ height: 260, mx: 'auto', my: { xs: 5, sm: 10 } }}
+                />
 
-              <Typography variant="h3" gutterBottom>
+                <Typography variant="h3" gutterBottom>
                 Request sent successfully
-              </Typography>
-              <Typography>
+                </Typography>
+                <Typography>
                 We have sent a confirmation email to &nbsp;
                 <strong>{email}</strong>
                 <br />
                 Please check your email.
-              </Typography>
+                </Typography>
 
-              <Button size="large" variant="contained" component={RouterLink} to="/login" sx={{ mt: 5 }}>
+                <Button size="large" variant="contained" component={RouterLink} to="/login" sx={{ mt: 5 }}>
                 Back
-              </Button>
+                </Button>
             </Box>
           )}
         </Box>

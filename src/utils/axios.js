@@ -2,7 +2,11 @@ import axios from 'axios';
 
 // ----------------------------------------------------------------------
 
-const axiosInstance = axios.create();
+// Set config defaults when creating the instance
+const axiosInstance = axios.create({
+  baseURL: 'https://api.example.com',
+  
+});
 
 axiosInstance.interceptors.response.use(
   (response) => response,

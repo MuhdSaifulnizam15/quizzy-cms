@@ -44,6 +44,15 @@ const handlers = {
       isAuthenticated: true,
       user
     };
+  },
+  RESET_PASSWORD: (state, action) => {
+    const { user } = action.payload;
+
+    return {
+      ...state,
+      isAuthenticated: false,
+      user: null
+    };
   }
 };
 
@@ -54,7 +63,8 @@ const AuthContext = createContext({
   method: 'jwt',
   login: () => Promise.resolve(),
   logout: () => Promise.resolve(),
-  register: () => Promise.resolve()
+  register: () => Promise.resolve(),
+  resetPassword: () => Promise.resolve()
 });
 
 AuthProvider.propTypes = {
@@ -145,7 +155,10 @@ function AuthProvider({ children }) {
     dispatch({ type: 'LOGOUT' });
   };
 
-  const resetPassword = () => {};
+  const resetPassword = async (email) => {
+    console.log('reset Password', email);
+    dispatch({ type: 'RESET_PASSWORD' });
+  };
 
   const updateProfile = () => {};
 

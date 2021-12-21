@@ -4,7 +4,10 @@ import { Form, FormikProvider, useFormik } from 'formik';
 // material
 import { TextField, Alert, Stack } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
-import { Navigate } from 'react-router-dom';
+// hooks
+import useAuth from '../../../hooks/useAuth';
+import useIsMountedRef from '../../../hooks/useIsMountedRef';
+
 
 // ----------------------------------------------------------------------
 
@@ -13,7 +16,9 @@ ResetPasswordForm.propTypes = {
   onGetEmail: PropTypes.func
 };
 
-export default function ResetPasswordForm() {
+export default function ResetPasswordForm({ onSent, onGetEmail }) {
+  const { resetPassword } = useAuth();
+  const isMountedRef = useIsMountedRef();
 
   const ResetPasswordSchema = Yup.object().shape({
     email: Yup.string().email('Email must be a valid email address').required('Email is required')
@@ -24,8 +29,21 @@ export default function ResetPasswordForm() {
       email: ''
     },
     validationSchema: ResetPasswordSchema,
-    onSubmit: () => {
-      Navigate('/dashboard', { replace: true });
+    onSubmit: async (values, { setErrors, setSubmitting }) => {
+      try {
+        await resetPassword(values.email);
+        if (isMountedRef.current) {
+          onSent();
+          onGetEmail(formik.values.email);
+          setSubmitting(false);
+        }
+      } catch (error) {
+        console.error(error);
+        if (isMountedRef.current) {
+          setErrors({ afterSubmit: error.message });
+          setSubmitting(false);
+        }
+      }
     }
   });
 

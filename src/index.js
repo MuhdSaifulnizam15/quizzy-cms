@@ -1,22 +1,30 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import { BrowserRouter } from 'react-router-dom';
+import { HelmetProvider } from 'react-helmet-async';
 import { Provider } from 'react-redux';
+
+//
+import App from './App';
+import * as serviceWorker from './serviceWorker';
+import reportWebVitals from './reportWebVitals';
 import store from './redux/store';
 import "./translations/i18n";
 
 // core styles
-import "./scss/volt.scss";
 
 // vendor styles
-import "@fortawesome/fontawesome-free/css/all.css";
+import 'simplebar/src/simplebar.css';
 
 ReactDOM.render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
-  document.getElementById('root')
+	<HelmetProvider>
+		<BrowserRouter>
+			<Provider store={store}>
+				<App />
+			</Provider>
+		</BrowserRouter>
+	</HelmetProvider>,
+	document.getElementById('root')
 );
 
 // If you want to start measuring performance in your app, pass a function

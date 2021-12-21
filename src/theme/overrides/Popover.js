@@ -1,10 +1,12 @@
 // ----------------------------------------------------------------------
 
-export default function IconButton() {
+export default function Popover(theme) {
   return {
-    MuiIconButton: {
+    MuiPopover: {
       styleOverrides: {
-        root: {}
+        paper: {
+          boxShadow: theme.customShadows.z12
+        }
       }
     }
   };

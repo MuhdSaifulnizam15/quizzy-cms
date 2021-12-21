@@ -1,8 +1,12 @@
 // ----------------------------------------------------------------------
 
-export default function IconButton() {
+export default function Link() {
   return {
-    MuiIconButton: {
+    MuiLink: {
+      defaultProps: {
+        underline: 'hover'
+      },
+
       styleOverrides: {
         root: {}
       }

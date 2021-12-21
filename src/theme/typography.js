@@ -18,7 +18,8 @@ function responsiveFontSizes({ sm, md, lg }) {
   };
 }
 
-const FONT_PRIMARY = 'Public Sans, sans-serif';
+const FONT_PRIMARY = 'Public Sans, sans-serif'; // Google Font
+// const FONT_SECONDARY = 'CircularStd, sans-serif'; // Local Font
 
 const typography = {
   fontFamily: FONT_PRIMARY,

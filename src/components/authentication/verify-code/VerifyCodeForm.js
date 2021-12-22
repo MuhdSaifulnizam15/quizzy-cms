@@ -7,6 +7,8 @@ import { OutlinedInput, FormHelperText, Stack } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
 // utils
 import fakeRequest from '../../../utils/fakeRequest';
+// routes
+import { PATH_DASHBOARD } from 'routes';
 
 // ----------------------------------------------------------------------
 

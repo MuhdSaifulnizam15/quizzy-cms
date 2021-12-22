@@ -15,6 +15,7 @@ import NotFound from '../pages/Auth/Page404';
 import ComingSoon from '../pages/Auth/ComingSoon';
 import Maintenance from '../pages/Auth/Maintenance';
 import Page500 from '../pages/Auth/Page500';
+import VerifyCode from '../pages/Auth/VerifyCode';
 
 import DashboardApp from '../pages/DashboardApp';
 import Products from '../pages/Products';
@@ -45,6 +46,7 @@ export default function Router() {
           { path: 'coming-soon', element: <ComingSoon /> },
           { path: 'maintenance', element: <Maintenance /> },
           { path: '500', element: <Page500 /> },
+          { path: 'verify', element: <VerifyCode /> },
           { path: '/', element: <Navigate to="/dashboard" /> },
           { path: '*', element: <Navigate to="/404" /> }
         ]

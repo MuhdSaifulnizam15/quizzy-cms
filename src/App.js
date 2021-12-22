@@ -12,16 +12,19 @@ import useAuth from './hooks/useAuth';
 // components
 import ScrollToTop from './components/ScrollToTop';
 import { BaseOptionChartStyle } from './components/charts/BaseOptionChart';
+import NotistackProvider from './components/NotistackProvider';
 
 export default function App() {
 	const { isInitialized } = useAuth();
 
 	return (
 		<ThemeConfig>
-			<ScrollToTop />
-			<GlobalStyles />
-			<BaseOptionChartStyle />
-			<Router />
+			<NotistackProvider>
+				<ScrollToTop />
+				<GlobalStyles />
+				<BaseOptionChartStyle />
+				<Router />
+			</NotistackProvider>
 		</ThemeConfig>
 	);
 }

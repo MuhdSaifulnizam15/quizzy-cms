@@ -11,16 +11,16 @@ import useIsMountedRef from '../../../hooks/useIsMountedRef';
 
 // ----------------------------------------------------------------------
 
-ResetPasswordForm.propTypes = {
+ForgotPasswordForm.propTypes = {
   onSent: PropTypes.func,
   onGetEmail: PropTypes.func
 };
 
-export default function ResetPasswordForm({ onSent, onGetEmail }) {
-  const { resetPassword } = useAuth();
+export default function ForgotPasswordForm({ onSent, onGetEmail }) {
+  const { forgotPassword } = useAuth();
   const isMountedRef = useIsMountedRef();
 
-  const ResetPasswordSchema = Yup.object().shape({
+  const ForgotPasswordSchema = Yup.object().shape({
     email: Yup.string().email('Email must be a valid email address').required('Email is required')
   });
 
@@ -28,10 +28,10 @@ export default function ResetPasswordForm({ onSent, onGetEmail }) {
     initialValues: {
       email: ''
     },
-    validationSchema: ResetPasswordSchema,
+    validationSchema: ForgotPasswordSchema,
     onSubmit: async (values, { setErrors, setSubmitting }) => {
       try {
-        await resetPassword(values.email);
+        await forgotPassword(values.email);
         if (isMountedRef.current) {
           onSent();
           onGetEmail(formik.values.email);
@@ -65,7 +65,7 @@ export default function ResetPasswordForm({ onSent, onGetEmail }) {
           />
 
           <LoadingButton fullWidth size="large" type="submit" variant="contained" loading={isSubmitting}>
-            Reset Password
+            Send Reset Password Link
           </LoadingButton>
         </Stack>
       </Form>

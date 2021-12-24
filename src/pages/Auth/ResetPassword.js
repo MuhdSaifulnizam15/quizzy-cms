@@ -9,7 +9,7 @@ import LogoOnlyLayout from '../../layouts/LogoOnlyLayout';
 // import { PATH_AUTH } from '../../routes/paths';
 // components
 import Page from '../../components/Page';
-import { ForgotPasswordForm } from '../../components/authentication/forgot-password';
+import { ResetPasswordForm } from '../../components/authentication/reset-password';
 
 // ----------------------------------------------------------------------
 
@@ -23,12 +23,11 @@ const RootStyle = styled(Page)(({ theme }) => ({
 
 // ----------------------------------------------------------------------
 
-export default function ForgotPassword() {
-  const [email, setEmail] = useState('');
+export default function ResetPassword() {
   const [sent, setSent] = useState(false);
 
   return (
-    <RootStyle title="Forgot Password | Minimal UI">
+    <RootStyle title="Reset Password">
       <LogoOnlyLayout />
 
       <Container>
@@ -36,39 +35,35 @@ export default function ForgotPassword() {
           {!sent ? (
             <>
               <Typography variant="h3" paragraph>
-                Forgot your password?
+              Reset your password?
               </Typography>
               <Typography sx={{ color: 'text.secondary', mb: 5 }}>
-                Please enter the email address associated with your account and We will email you a link to reset your
-                password.
+              Please enter your new password.
               </Typography>
 
-              <ForgotPasswordForm onSent={() => setSent(true)} onGetEmail={(value) => setEmail(value)} />
+              <ResetPasswordForm onSent={() => setSent(true)} />
 
               <Button fullWidth size="large" component={RouterLink} to="/login" sx={{ mt: 1 }}>
-                Back
+              Back
               </Button>
             </>
           ) : (
             <Box sx={{ textAlign: 'center' }}>
                 <Box
                     component="img"
-                    src="/static/illustrations/illustration_mail_sent.svg"
+                    src="/static/illustrations/illustration_reset_password.svg"
                     sx={{ height: 260, mx: 'auto', my: { xs: 5, sm: 10 } }}
                 />
 
                 <Typography variant="h3" gutterBottom>
-                Request sent successfully
+                Successful password reset
                 </Typography>
                 <Typography>
-                We have sent a confirmation email to &nbsp;
-                <strong>{email}</strong>
-                <br />
-                Please check your email.
+                You can now use your new password to log in to your account
                 </Typography>
 
                 <Button size="large" variant="contained" component={RouterLink} to="/login" sx={{ mt: 5 }}>
-                Back
+                Login
                 </Button>
             </Box>
           )}

@@ -45,6 +45,15 @@ const handlers = {
       user
     };
   },
+  FORGOT_PASSWORD: (state, action) => {
+    const { user } = action.payload;
+
+    return {
+      ...state,
+      isAuthenticated: false,
+      user: null
+    };
+  },
   RESET_PASSWORD: (state, action) => {
     const { user } = action.payload;
 
@@ -64,6 +73,7 @@ const AuthContext = createContext({
   login: () => Promise.resolve(),
   logout: () => Promise.resolve(),
   register: () => Promise.resolve(),
+  forgotPassword: () => Promise.resolve(),
   resetPassword: () => Promise.resolve()
 });
 
@@ -160,6 +170,11 @@ function AuthProvider({ children }) {
     dispatch({ type: 'RESET_PASSWORD' });
   };
 
+  const forgotPassword = async (email) => {
+    console.log('forgot Password', email);
+    dispatch({ type: 'FORGOT_PASSWORD' });
+  };
+
   const updateProfile = () => {};
 
   return (
@@ -171,6 +186,7 @@ function AuthProvider({ children }) {
         logout,
         register,
         resetPassword,
+        forgotPassword,
         updateProfile
       }}
     >

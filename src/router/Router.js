@@ -16,6 +16,7 @@ import ComingSoon from '../pages/Auth/ComingSoon';
 import Maintenance from '../pages/Auth/Maintenance';
 import Page500 from '../pages/Auth/Page500';
 import VerifyCode from '../pages/Auth/VerifyCode';
+import ResetPassword from '../pages/Auth/ResetPassword';
 
 import DashboardApp from '../pages/DashboardApp';
 import Products from '../pages/Products';
@@ -43,6 +44,7 @@ export default function Router() {
           { path: 'register', element: <Register /> },
           { path: '404', element: <NotFound /> },
           { path: 'forgot-password', element: <ForgotPassword /> },
+          { path: 'reset-password', element: <ResetPassword /> },
           { path: 'coming-soon', element: <ComingSoon /> },
           { path: 'maintenance', element: <Maintenance /> },
           { path: '500', element: <Page500 /> },

@@ -10,6 +10,7 @@ import LogoOnlyLayout from '../../layouts/LogoOnlyLayout';
 // components
 import Page from '../../components/Page';
 import { ResetPasswordForm } from '../../components/authentication/reset-password';
+import { PATH_AUTH } from 'routes';
 
 // ----------------------------------------------------------------------
 
@@ -43,7 +44,7 @@ export default function ResetPassword() {
 
               <ResetPasswordForm onSent={() => setSent(true)} />
 
-              <Button fullWidth size="large" component={RouterLink} to="/login" sx={{ mt: 1 }}>
+              <Button fullWidth size="large" component={RouterLink} to={PATH_AUTH.login} sx={{ mt: 1 }}>
               Back
               </Button>
             </>
@@ -62,7 +63,7 @@ export default function ResetPassword() {
                 You can now use your new password to log in to your account
                 </Typography>
 
-                <Button size="large" variant="contained" component={RouterLink} to="/login" sx={{ mt: 5 }}>
+                <Button size="large" variant="contained" component={RouterLink} to={PATH_AUTH.login} sx={{ mt: 5 }}>
                 Login
                 </Button>
             </Box>

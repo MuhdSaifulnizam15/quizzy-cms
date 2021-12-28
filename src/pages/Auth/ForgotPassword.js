@@ -10,6 +10,7 @@ import LogoOnlyLayout from '../../layouts/LogoOnlyLayout';
 // components
 import Page from '../../components/Page';
 import { ForgotPasswordForm } from '../../components/authentication/forgot-password';
+import { PATH_AUTH } from 'routes';
 
 // ----------------------------------------------------------------------
 
@@ -67,7 +68,7 @@ export default function ForgotPassword() {
                 Please check your email.
                 </Typography>
 
-                <Button size="large" variant="contained" component={RouterLink} to="/login" sx={{ mt: 5 }}>
+                <Button size="large" variant="contained" component={RouterLink} to={PATH_AUTH.login} sx={{ mt: 5 }}>
                 Back
                 </Button>
             </Box>

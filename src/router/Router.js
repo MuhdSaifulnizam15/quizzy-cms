@@ -1,58 +1,130 @@
-
-import React from 'react';
-import { Navigate, useRoutes } from 'react-router-dom';
+import { Suspense, lazy } from 'react';
+import { Navigate, useRoutes, useLocation } from 'react-router-dom';
 
 // layouts
-import DashboardLayout from '../layouts/dashboard';
-import LogoOnlyLayout from '../layouts/LogoOnlyLayout';
+import DashboardLayout from 'layouts/dashboard';
+import LogoOnlyLayout from 'layouts/LogoOnlyLayout';
+// components
+import LoadingScreen from 'components/LoadingScreen';
+// guards
+import GuestGuard from 'guards/GuestGuard';
+import AuthGuard from 'guards/AuthGuard';
 
-// pages
-// authentication
-import Login from '../pages/Auth/Login';
-import Register from '../pages/Auth/Register';
-import ForgotPassword from '../pages/Auth/ForgotPassword';
-import NotFound from '../pages/Auth/Page404';
-import ComingSoon from '../pages/Auth/ComingSoon';
-import Maintenance from '../pages/Auth/Maintenance';
-import Page500 from '../pages/Auth/Page500';
-import VerifyCode from '../pages/Auth/VerifyCode';
-import ResetPassword from '../pages/Auth/ResetPassword';
+// ----------------------------------------------------------------------
 
-import DashboardApp from '../pages/DashboardApp';
-import Products from '../pages/Products';
-import Blog from '../pages/Blog';
-import User from '../pages/User';
+const Loadable = (Component) => (props) => {
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const { pathname } = useLocation();
+  const isDashboard = pathname.includes('/dashboard');
+
+  return (
+    <Suspense
+      fallback={
+        <LoadingScreen
+          sx={{
+            ...(!isDashboard && {
+              top: 0,
+              left: 0,
+              width: 1,
+              zIndex: 9999,
+              position: 'fixed'
+            })
+          }}
+        />
+      }
+    >
+      <Component {...props} />
+    </Suspense>
+  );
+};
 
 export default function Router() {
-    return useRoutes([
-      {
-        path: '/dashboard',
-        element: <DashboardLayout />,
-        children: [
-          { element: <Navigate to="/dashboard/app" replace /> },
-          { path: 'app', element: <DashboardApp /> },
-          { path: 'user', element: <User /> },
-          { path: 'products', element: <Products /> },
-          { path: 'blog', element: <Blog /> }
-        ]
-      },
-      {
-        path: '/',
-        element: <LogoOnlyLayout />,
-        children: [
-          { path: 'login', element: <Login /> },
-          { path: 'register', element: <Register /> },
-          { path: '404', element: <NotFound /> },
-          { path: 'forgot-password', element: <ForgotPassword /> },
-          { path: 'reset-password', element: <ResetPassword /> },
-          { path: 'coming-soon', element: <ComingSoon /> },
-          { path: 'maintenance', element: <Maintenance /> },
-          { path: '500', element: <Page500 /> },
-          { path: 'verify', element: <VerifyCode /> },
-          { path: '/', element: <Navigate to="/dashboard" /> },
-          { path: '*', element: <Navigate to="/404" /> }
-        ]
-      },
-      { path: '*', element: <Navigate to="/404" replace /> }
-    ]);
-  }
+  return useRoutes([
+    {
+      path: 'auth',
+      children: [
+        {
+          path: 'login',
+          element: (
+            <GuestGuard>
+              <Login />
+            </GuestGuard>
+          )
+        },
+        {
+          path: 'register',
+          element: (
+            <GuestGuard>
+              <Register />
+            </GuestGuard>
+          )
+        },
+        { path: 'reset-password', element: <ResetPassword /> },
+        { path: 'forgot-password', element: <ForgotPassword /> },
+        { path: 'verify', element: <VerifyCode /> }
+      ]
+    },
+
+    // Dashboard Routes
+    {
+      path: 'dashboard',
+      element: (
+        // <AuthGuard>
+          <DashboardLayout />
+        // </AuthGuard>
+      ),
+      children: [
+        { element: <Navigate to="/dashboard/app" replace /> },
+        { path: 'app', element: <DashboardApp /> },
+        { path: 'user', element: <User /> },
+        { path: 'products', element: <Products /> },
+        { path: 'blog', element: <Blog /> }
+      ]
+    },
+
+    // Main Routes
+    {
+      path: '*',
+      element: <LogoOnlyLayout />,
+      children: [
+        { path: 'coming-soon', element: <ComingSoon /> },
+        { path: 'maintenance', element: <Maintenance /> },
+        { path: '500', element: <Page500 /> },
+        { path: '404', element: <NotFound /> },
+        { path: '*', element: <Navigate to="/404" replace /> }
+      ]
+    },
+    // {
+    //   path: '/',
+    //   element: <MainLayout />,
+    //   children: [
+    //     { element: <LandingPage /> },
+    //     { path: 'about-us', element: <About /> },
+    //     { path: 'contact-us', element: <Contact /> },
+    //     { path: 'faqs', element: <Faqs /> },
+    //   ]
+    // },
+    { path: '*', element: <Navigate to="/404" replace /> }
+  ])
+}
+
+// IMPORT PAGES
+
+// Authentication
+const Login = Loadable(lazy(() => import('pages/Auth/Login')));
+const Register = Loadable(lazy(() => import('pages/Auth/Register')));
+const ResetPassword = Loadable(lazy(() => import('pages/Auth/ResetPassword')));
+const ForgotPassword = Loadable(lazy(() => import('pages/Auth/ForgotPassword')));
+const VerifyCode = Loadable(lazy(() => import('pages/Auth/VerifyCode')));
+
+// Dashboard
+const DashboardApp = Loadable(lazy(() => import('pages/DashboardApp')));
+const Products = Loadable(lazy(() => import('pages/Products')));
+const Blog = Loadable(lazy(() => import('pages/Blog')));
+const User = Loadable(lazy(() => import('pages/User')));
+
+// Main
+const ComingSoon = Loadable(lazy(() => import('pages/Auth/ComingSoon')));
+const NotFound = Loadable(lazy(() => import('pages/Auth/Page404')));
+const Maintenance = Loadable(lazy(() => import('pages/Auth/Maintenance')));
+const Page500 = Loadable(lazy(() => import('pages/Auth/Page500')));

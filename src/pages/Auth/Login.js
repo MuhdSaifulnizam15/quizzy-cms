@@ -9,6 +9,7 @@ import Page from '../../components/Page';
 import { MHidden } from '../../components/@material-extend';
 import { LoginForm } from '../../components/authentication/login';
 import AuthSocial from '../../components/authentication/AuthSocial';
+import { PATH_AUTH } from 'routes';
 
 // ----------------------------------------------------------------------
 
@@ -44,7 +45,7 @@ export default function Login() {
     <RootStyle title="Login | Minimal-UI">
       <AuthLayout>
         Don’t have an account? &nbsp;
-        <Link underline="none" variant="subtitle2" component={RouterLink} to="/register">
+        <Link underline="none" variant="subtitle2" component={RouterLink} to={PATH_AUTH.register}>
           Get started
         </Link>
       </AuthLayout>
@@ -78,7 +79,7 @@ export default function Login() {
           <MHidden width="smUp">
             <Typography variant="body2" align="center" sx={{ mt: 3 }}>
               Don’t have an account?&nbsp;
-              <Link variant="subtitle2" component={RouterLink} to="register">
+              <Link variant="subtitle2" component={RouterLink} to={PATH_AUTH.register}>
                 Get started
               </Link>
             </Typography>

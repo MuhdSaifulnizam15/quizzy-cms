@@ -4,6 +4,7 @@ import { styled } from '@mui/material/styles';
 import { Button, Typography, Container, Box } from '@mui/material';
 // components
 import Page from '../../components/Page';
+import { PATH_DASHBOARD } from 'routes';
 
 // ----------------------------------------------------------------------
 
@@ -32,7 +33,7 @@ export default function Maintenance() {
             sx={{ height: 240, mx: 'auto', my: { xs: 5, sm: 10 } }}
         />
 
-        <Button variant="contained" size="large" component={RouterLink} to="/">
+        <Button variant="contained" size="large" component={RouterLink} to={PATH_DASHBOARD.root}>
           Go to Home
         </Button>
       </Container>

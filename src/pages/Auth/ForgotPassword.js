@@ -29,7 +29,7 @@ export default function ForgotPassword() {
   const [sent, setSent] = useState(false);
 
   return (
-    <RootStyle title="Forgot Password | Minimal UI">
+    <RootStyle title="Forgot Password">
       <LogoOnlyLayout />
 
       <Container>

@@ -1,1 +1,11 @@
-<?xml version="1.0" encoding="utf-8"?><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 55.7 38.9" style="enable-background:new 0 0 55.7 38.9" xml:space="preserve"><style type="text/css">.st0{fill:#FFFFFF;stroke:#CCCCCC;stroke-width:0.5;stroke-miterlimit:2.6131;} .st1{fill:#CE1126;}</style><g><path class="st0" d="M3.28,0.25h49.13c1.67,0,3.03,1.36,3.03,3.03v32.33c0,1.66-1.35,3.02-3.01,3.03H3.26 c-1.66-0.01-3.01-1.37-3.01-3.03V3.28C0.25,1.61,1.61,0.25,3.28,0.25L3.28,0.25z"/><path class="st1" d="M3.28,0.25h49.13c1.67,0,3.03,1.36,3.03,3.03v16.17H0.25V3.28C0.25,1.61,1.61,0.25,3.28,0.25L3.28,0.25z"/></g></svg>
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="body_1" width="28" height="20">
+
+<g transform="matrix(0.50269306 0 0 0.50269306 -0 0.22262053)">
+	<g>
+        <path d="M3.28 0.25L52.41 0.25C 54.079998 0.25 55.44 1.61 55.44 3.28L55.44 3.28L55.44 35.61C 55.44 37.27 54.09 38.63 52.43 38.64L52.43 38.64L3.26 38.64C 1.6 38.63 0.25 37.27 0.25 35.61L0.25 35.61L0.25 3.28C 0.25 1.61 1.61 0.25 3.28 0.25z" stroke="#CCCCCC" stroke-width="0.5" fill="#FFFFFF" fill-rule="nonzero" />
+        <path d="M3.28 0.25L52.41 0.25C 54.079998 0.25 55.44 1.61 55.44 3.28L55.44 3.28L55.44 19.45L0.25 19.45L0.25 3.28C 0.25 1.61 1.61 0.25 3.28 0.25z" stroke="none" fill="#CE1126" fill-rule="nonzero" />
+	</g>
+</g>
+</svg>

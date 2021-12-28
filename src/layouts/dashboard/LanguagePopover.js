@@ -3,7 +3,9 @@ import { useRef, useState } from 'react';
 import { alpha } from '@mui/material/styles';
 import { Box, MenuItem, ListItemIcon, ListItemText, IconButton } from '@mui/material';
 // components
-import MenuPopover from '../../components/MenuPopover';
+import MenuPopover from 'components/MenuPopover';
+// hooks
+import useLocales from 'hooks/useLocales';
 
 // ----------------------------------------------------------------------
 
@@ -35,6 +37,8 @@ const LANGS = [
 export default function LanguagePopover() {
   const anchorRef = useRef(null);
   const [open, setOpen] = useState(false);
+  const { allLang, currentLang, onChangeLang } = useLocales();
+
 
   const handleOpen = () => {
     setOpen(true);
@@ -42,6 +46,11 @@ export default function LanguagePopover() {
 
   const handleClose = () => {
     setOpen(false);
+  };
+
+  const handleChangeLang = (value) => {
+    onChangeLang(value);
+    handleClose();
   };
 
   return (
@@ -58,7 +67,7 @@ export default function LanguagePopover() {
           })
         }}
       >
-        <img src={LANGS[0].icon} alt={LANGS[0].label} />
+        <img src={currentLang.icon} alt={currentLang.label} />
       </IconButton>
 
       <MenuPopover open={open} onClose={handleClose} anchorEl={anchorRef.current}>
@@ -66,8 +75,8 @@ export default function LanguagePopover() {
           {LANGS.map((option) => (
             <MenuItem
               key={option.value}
-              selected={option.value === LANGS[0].value}
-              onClick={handleClose}
+              selected={option.value === currentLang.value}
+              onClick={() => handleChangeLang(option.value)}
               sx={{ py: 1, px: 2.5 }}
             >
               <ListItemIcon>

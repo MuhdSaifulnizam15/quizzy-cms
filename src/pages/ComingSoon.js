@@ -7,10 +7,10 @@ import instagramFilled from '@iconify/icons-ant-design/instagram-filled';
 import { styled } from '@mui/material/styles';
 import { Box, Button, Tooltip, Container, Typography, InputAdornment, OutlinedInput } from '@mui/material';
 // hooks
-import useCountdown from '../../hooks/useCountdown';
+import useCountdown from '../hooks/useCountdown';
 // components
-import { MIconButton } from '../../components/@material-extend';
-import Page from '../../components/Page';
+import { MIconButton } from '../components/@material-extend';
+import Page from '../components/Page';
 
 // ----------------------------------------------------------------------
 

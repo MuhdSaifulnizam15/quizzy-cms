@@ -124,7 +124,7 @@ const Blog = Loadable(lazy(() => import('pages/Blog')));
 const User = Loadable(lazy(() => import('pages/User')));
 
 // Main
-const ComingSoon = Loadable(lazy(() => import('pages/Auth/ComingSoon')));
-const NotFound = Loadable(lazy(() => import('pages/Auth/Page404')));
-const Maintenance = Loadable(lazy(() => import('pages/Auth/Maintenance')));
-const Page500 = Loadable(lazy(() => import('pages/Auth/Page500')));
+const ComingSoon = Loadable(lazy(() => import('pages/ComingSoon')));
+const NotFound = Loadable(lazy(() => import('pages/Page404')));
+const Maintenance = Loadable(lazy(() => import('pages/Maintenance')));
+const Page500 = Loadable(lazy(() => import('pages/Page500')));

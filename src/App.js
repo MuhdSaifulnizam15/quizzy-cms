@@ -12,18 +12,24 @@ import useAuth from './hooks/useAuth';
 import ScrollToTop from './components/ScrollToTop';
 import { BaseOptionChartStyle } from './components/charts/BaseOptionChart';
 import NotistackProvider from './components/NotistackProvider';
+import LoadingScreen, { ProgressBarStyle } from './components/LoadingScreen';
+import ThemeLocalization from './components/ThemeLocalization';
 
 export default function App() {
 	const { isInitialized } = useAuth();
 
 	return (
 		<ThemeConfig>
-			<NotistackProvider>
-				<ScrollToTop />
-				<GlobalStyles />
-				<BaseOptionChartStyle />
-				<Router />
-			</NotistackProvider>
+			<ThemeLocalization>
+				<NotistackProvider>
+					<GlobalStyles />
+					<ProgressBarStyle />
+					<BaseOptionChartStyle />
+					<ScrollToTop />
+					{isInitialized ? <Router /> : <LoadingScreen />}
+					{/* <Router /> */}
+				</NotistackProvider>
+			</ThemeLocalization>
 		</ThemeConfig>
 	);
 }

@@ -9,7 +9,8 @@ import { isValidToken, setSession } from '../utils/jwt';
 const initialState = {
   isAuthenticated: false,
   isInitialized: false,
-  user: null
+  user: null,
+  token: null,
 };
 
 const handlers = {
@@ -29,6 +30,15 @@ const handlers = {
       ...state,
       isAuthenticated: true,
       user
+    };
+  },
+  REFRESH: (state, action) => {
+    const { user } = action.payload;
+
+    return {
+      ...state,
+      isAuthenticated: true,
+      user,
     };
   },
   LOGOUT: (state) => ({
@@ -72,6 +82,7 @@ const AuthContext = createContext({
   method: 'jwt',
   login: () => Promise.resolve(),
   logout: () => Promise.resolve(),
+  refresh: () => Promise.resolve(),
   register: () => Promise.resolve(),
   forgotPassword: () => Promise.resolve(),
   resetPassword: () => Promise.resolve()
@@ -88,6 +99,7 @@ function AuthProvider({ children }) {
     const initialize = async () => {
       try {
         const accessToken = window.localStorage.getItem('accessToken');
+        const refreshToken = window.localStorage.getItem('refreshToken');
 
         if (accessToken && isValidToken(accessToken)) {
           setSession(accessToken);
@@ -102,6 +114,13 @@ function AuthProvider({ children }) {
               user
             }
           });
+        } else if (refreshToken && isValidToken(refreshToken)){ // check if refreshToken exists, call refreshToken api
+          const response = await axios.post('/api/auth/refresh-tokens', {
+            refreshToken
+          });
+          console.log('refreshToken api response: ', response);
+          const { tokens } = response.data;
+          
         } else {
           dispatch({
             type: 'INITIALIZE',
@@ -127,16 +146,15 @@ function AuthProvider({ children }) {
   }, []);
 
   const login = async (email, password) => {
-    console.log('login', email, password);
-    // const response = await axios.post('/api/account/login', {
-    //   email,
-    //   password
-    // });
-    // const { accessToken, user } = response.data;
-    const accessToken = 'abc123';
-    const user = { email, password };
+    const response = await axios.post('/auth/login', {
+      email,
+      password
+    });
+    console.log('response login:', response);
 
-    setSession(accessToken);
+    const { tokens, user } = response.data;
+
+    setSession(tokens);
     dispatch({
       type: 'LOGIN',
       payload: {
@@ -145,6 +163,26 @@ function AuthProvider({ children }) {
     });
   };
 
+  const refresh = async (refreshToken) => {
+    const response = await axios.post('/auth/refresh-tokens', {
+      refreshToken
+    });
+    console.log('response refreshToken:', response);
+
+    const userProfileResponse = await axios.get('/auth/profile');
+    console.log('response getuserProfile:', userProfileResponse);
+
+    const { user } = userProfileResponse;
+
+    setSession(response);
+    dispatch({
+      type: "REFRESH",
+      payload: {
+        user,
+      }
+    });
+  }
+
   const register = async (email, password, firstName, lastName) => {
     const response = await axios.post('/api/account/register', {
       email,
@@ -152,9 +190,8 @@ function AuthProvider({ children }) {
       firstName,
       lastName
     });
-    const { accessToken, user } = response.data;
+    const { user } = response.data;
 
-    window.localStorage.setItem('accessToken', accessToken);
     dispatch({
       type: 'REGISTER',
       payload: {

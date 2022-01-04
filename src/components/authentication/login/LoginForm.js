@@ -4,6 +4,7 @@ import { Link as RouterLink, useNavigate } from 'react-router-dom';
 import { useFormik, Form, FormikProvider } from 'formik';
 import { Icon } from '@iconify/react';
 import eyeFill from '@iconify/icons-eva/eye-fill';
+import closeFill from '@iconify/icons-eva/close-fill';
 import eyeOffFill from '@iconify/icons-eva/eye-off-fill';
 // material
 import {
@@ -13,14 +14,24 @@ import {
   TextField,
   IconButton,
   InputAdornment,
-  FormControlLabel
+  FormControlLabel,
+  Alert
 } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
-
+import { useSnackbar } from 'notistack';
+// hooks
+import useAuth from 'hooks/useAuth';
+import useIsMountedRef from 'hooks/useIsMountedRef';
+// routes
+import { PATH_AUTH } from 'routes';
+// components 
+import { MIconButton } from 'components/@material-extend'
 // ----------------------------------------------------------------------
 
 export default function LoginForm() {
-  const navigate = useNavigate();
+  const { login } = useAuth();
+  const isMountedRef = useIsMountedRef();
+  const { enqueueSnackbar, closeSnackbar } = useSnackbar();
   const [showPassword, setShowPassword] = useState(false);
 
   const LoginSchema = Yup.object().shape({
@@ -35,9 +46,31 @@ export default function LoginForm() {
       remember: true
     },
     validationSchema: LoginSchema,
-    onSubmit: () => {
-      console.log('submit login');
-      // navigate('/dashboard', { replace: true });
+    onSubmit: async (values, { setErrors, setSubmitting, resetForm }) => {
+      try {
+        await login(values.email, values.password);
+        enqueueSnackbar('Login success', {
+          variant: 'success',
+          action: (key) => (
+            <MIconButton 
+              size="small"
+              onClick={() => closeSnackbar(key) }
+            > 
+              <Icon icon={closeFill} />
+            </MIconButton>
+          )
+        });
+        if(isMountedRef.current) {
+          setSubmitting(false);
+        }
+      } catch (err) {
+        console.err(err);
+        resetForm();
+        if(isMountedRef.current) {
+          setSubmitting(false);
+          setErrors({ afterSubmit: err.message });
+        }
+      }
     }
   });
 
@@ -51,6 +84,8 @@ export default function LoginForm() {
     <FormikProvider value={formik}>
       <Form autoComplete="off" noValidate onSubmit={handleSubmit}>
         <Stack spacing={3}>
+          {errors.afterSubmit && <Alert severity='error'>{errors.afterSubmit}</Alert>}
+
           <TextField
             fullWidth
             autoComplete="username"

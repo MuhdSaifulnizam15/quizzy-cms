@@ -100,11 +100,12 @@ function AuthProvider({ children }) {
       try {
         const accessToken = window.localStorage.getItem('accessToken');
         const refreshToken = window.localStorage.getItem('refreshToken');
-
+        console.log('accessToken', accessToken, refreshToken);
         if (accessToken && isValidToken(accessToken)) {
           setSession(accessToken);
 
-          const response = await axios.get('/api/account/my-account');
+          const response = await axios.get('/auth/profile');
+          console.log('getUserProfile response:', response);
           const { user } = response.data;
 
           dispatch({
@@ -115,11 +116,24 @@ function AuthProvider({ children }) {
             }
           });
         } else if (refreshToken && isValidToken(refreshToken)){ // check if refreshToken exists, call refreshToken api
-          const response = await axios.post('/api/auth/refresh-tokens', {
+          const response = await axios.post('/auth/refresh-tokens', {
             refreshToken
           });
-          console.log('refreshToken api response: ', response);
-          const { tokens } = response.data;
+          console.log('response refreshToken:', response);
+      
+          const userProfileResponse = await axios.get('/auth/profile');
+          console.log('response getuserProfile:', userProfileResponse);
+      
+          const { user } = userProfileResponse;
+      
+          setSession(response);
+          dispatch({
+            type: "INITIALIZE",
+            payload: {
+              isAuthenticated: true,
+              user,
+            }
+          });
           
         } else {
           dispatch({

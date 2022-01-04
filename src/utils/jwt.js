@@ -11,8 +11,8 @@ const isValidToken = (accessToken) => {
   }
 
   const decoded = jwtDecode(accessToken);
-  console.log('decoded', decoded);
   const currentTime = Date.now() / 1000;
+  console.log('decoded', decoded, decoded.exp > currentTime);
 
   return decoded.exp > currentTime;
 };
@@ -32,12 +32,23 @@ const handleTokenExpired = (exp) => {
 
 const setSession = (tokens) => {
   if (tokens) {
-    localStorage.setItem('accessToken', tokens.access.token);
-    localStorage.setItem('refreshToken', tokens.refresh.token);
-    axios.defaults.headers.common.Authorization = `Bearer ${tokens.access.token}`;
-    // This function below will handle when token is expired
-    const { exp } = jwtDecode(tokens.access.token);
-    handleTokenExpired(exp);
+    if(tokens.access){
+      localStorage.setItem('accessToken', tokens.access.token);
+      localStorage.setItem('refreshToken', tokens.refresh.token);
+      axios.defaults.headers.common.Authorization = `Bearer ${tokens.access.token}`;
+      
+      // This function below will handle when token is expired
+      const { exp } = jwtDecode(tokens.access.token);
+      handleTokenExpired(exp);
+    } else {
+      localStorage.setItem('accessToken', tokens);
+      axios.defaults.headers.common.Authorization = `Bearer ${tokens}`;
+      
+      // This function below will handle when token is expired
+      const { exp } = jwtDecode(tokens);
+      handleTokenExpired(exp);
+    }
+
   } else {
     localStorage.removeItem('accessToken');
     localStorage.removeItem('refreshToken');

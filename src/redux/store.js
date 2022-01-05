@@ -1,13 +1,24 @@
-import { createStore, applyMiddleware } from "redux";
-import thunk from 'redux-thunk';
-import rootReducer from "./reducers/rootReducer";
+import { useDispatch as useReduxDispatch, useSelector as useReduxSelector } from 'react-redux';
+import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
+import { persistStore, persistReducer } from 'redux-persist';
 
-const initialState = {};
-const middleWare = [thunk];
-const store = createStore(
-    rootReducer,
-    initialState,
-    applyMiddleware(...middleWare)
-)
+import { rootPersistConfig, rootReducer } from 'redux/reducers/rootReducer';
 
-export default store;
+// ----------------------------------------------------------------------
+
+const store = configureStore({
+    reducer: persistReducer(rootPersistConfig, rootReducer),
+    middleware: getDefaultMiddleware({
+        serializableCheck: false,
+        immutableCheck: false
+    })
+});
+  
+const persistor = persistStore(store);
+
+const useSelector = useReduxSelector;
+
+const useDispatch = () => useReduxDispatch();
+
+export { store, persistor, useSelector, useDispatch };
+  

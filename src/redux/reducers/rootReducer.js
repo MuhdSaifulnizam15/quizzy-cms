@@ -1,6 +1,19 @@
+import { combineReducers } from 'redux';
+import storage from 'redux-persist/lib/storage';
+// reducer
+import userReducer from 'redux/slices/user';
 
-import { combineReducers } from "redux";
+// ----------------------------------------------------------------------
 
-export default combineReducers({
-    
-})
+const rootPersistConfig = {
+    key: 'root',
+    storage,
+    keyPrefix: 'redux-',
+    whitelist: []
+};
+
+const rootReducer = combineReducers({
+    user: userReducer,
+});
+
+export { rootPersistConfig, rootReducer };

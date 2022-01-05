@@ -76,7 +76,7 @@ export default function Router() {
       children: [
         { element: <Navigate to="/dashboard/app" replace /> },
         { path: 'app', element: <DashboardApp /> },
-        { path: 'user', element: <User /> },
+        { path: 'user', element: <UserList /> },
         { path: 'products', element: <Products /> },
         { path: 'blog', element: <Blog /> }
       ]
@@ -122,6 +122,8 @@ const DashboardApp = Loadable(lazy(() => import('pages/DashboardApp')));
 const Products = Loadable(lazy(() => import('pages/Products')));
 const Blog = Loadable(lazy(() => import('pages/Blog')));
 const User = Loadable(lazy(() => import('pages/User')));
+
+const UserList = Loadable(lazy(() => import('pages/Dashboard/User/UserList')));
 
 // Main
 const ComingSoon = Loadable(lazy(() => import('pages/ComingSoon')));
